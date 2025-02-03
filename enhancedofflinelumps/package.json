@@ -1,0 +1,33 @@
+{
+  "name": "enhanced-offline-lumps",
+  "version": "1.0.0-beta.1",
+  "description": "A Cookie Clicker mod that enhances sugar lump collection with automatic harvesting and offline progress",
+  "main": "enhancedofflinelumps/dist/EnhancedOfflineLumps.js",
+  "scripts": {
+    "clean-logs": "replace-in-file --configFile=clean-logs.config.js",
+    "lint": "eslint enhancedofflinelumps/src/ --ext .js",
+    "lint:fix": "eslint enhancedofflinelumps/src/ --ext .js --fix",
+    "build": "cp enhancedofflinelumps/src/EnhancedOfflineLumps.js enhancedofflinelumps/dist/",
+    "prepare": "npm run clean-logs && npm run lint:fix && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doeza/cookieclicker-mods.git"
+  },
+  "keywords": [
+    "cookie-clicker",
+    "mod",
+    "sugar-lumps",
+    "automation"
+  ],
+  "author": "Eric",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doeza/cookieclicker-mods/issues"
+  },
+  "homepage": "https://github.com/doeza/cookieclicker-mods#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "replace-in-file": "^7.1.0"
+  }
+}
