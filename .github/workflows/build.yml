@@ -33,10 +33,13 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm ci || (npm install && npm shrinkwrap)
+        run: npm install
 
       - name: Clean logs
         run: npm run clean-logs
+
+      - name: Run ESLint with auto-fix
+        run: npm run lint:fix
 
       - name: Build
         run: npm run build

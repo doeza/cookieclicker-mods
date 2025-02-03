@@ -127,7 +127,7 @@ EnhancedOfflineLumps.createSettingsMenu = function () {
   str += '<div class="subsection" style="padding: 8px; margin: 8px 0; background: rgba(0,0,0,0.1); border-radius: 8px;">';
   str += '<div class="title" style="font-size: 1.2em; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 8px;">Sugar Lump Types</div>';
   str += '<div style="color: rgba(255,255,255,0.8); line-height: 1.4em;">';
-  Object.entries(EnhancedOfflineLumps.lumpTypes).forEach(([type, info]) => {
+  Object.entries(EnhancedOfflineLumps.lumpTypes).forEach(([_type, info]) => {
     str += '<div style="margin: 4px 0;"><span style="color: ' + info.color + '; font-weight: bold;">' + info.name + ':</span> ' + info.description + '</div>';
   });
   str += '<div style="margin-top: 8px; font-style: italic;">Note: Lump type is random and determined when it starts growing.</div>';
