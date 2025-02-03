@@ -32,31 +32,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Create directories
-        run: |
-          cd cookieclicker-mods/enhancedofflinelumps
-          mkdir -p src dist
-
       - name: Install dependencies
-        run: |
-          cd cookieclicker-mods/enhancedofflinelumps
-          npm ci || (npm install && npm shrinkwrap)
+        run: npm ci || (npm install && npm shrinkwrap)
 
       - name: Clean logs
-        run: |
-          cd cookieclicker-mods/enhancedofflinelumps
-          npm run clean-logs
+        run: npm run clean-logs
 
       - name: Build
-        run: |
-          cd cookieclicker-mods/enhancedofflinelumps
-          npm run build
+        run: npm run build
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: cookieclicker-mods/enhancedofflinelumps/dist/
+          path: dist/
           retention-days: 5
 
   release:
@@ -73,15 +62,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: cookieclicker-mods/enhancedofflinelumps/dist/
+          path: dist/
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            cookieclicker-mods/enhancedofflinelumps/dist/EnhancedOfflineLumps.js
-            cookieclicker-mods/enhancedofflinelumps/README.md
-            cookieclicker-mods/enhancedofflinelumps/LICENSE
+            dist/EnhancedOfflineLumps.js
+            README.md
+            LICENSE
           draft: false
           prerelease: false
           generate_release_notes: true

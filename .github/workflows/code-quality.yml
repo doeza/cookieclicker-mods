@@ -30,18 +30,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Create directories
-        run: |
-          cd cookieclicker-mods/enhancedofflinelumps
-          mkdir -p src dist
-
       - name: Install dependencies
         run: |
-          cd cookieclicker-mods/enhancedofflinelumps
           npm ci || (npm install && npm shrinkwrap)
           npm install -g eslint
 
       - name: Run ESLint
-        run: |
-          cd cookieclicker-mods/enhancedofflinelumps
-          npm run lint
+        run: npm run lint
