@@ -9,7 +9,7 @@
     "clean-logs": "replace-in-file --configFile=clean-logs.config.js",
     "lint": "eslint src/ --ext .js",
     "lint:fix": "eslint src/ --ext .js --fix",
-    "prepare": "npm run clean-logs && npm run build",
+    "prepare": "npm run clean-logs && npm run lint:fix && npm run build",
     "dev": "npm run watch"
   },
   "repository": {

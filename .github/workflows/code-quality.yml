@@ -35,5 +35,8 @@ jobs:
           npm ci || (npm install && npm shrinkwrap)
           npm install -g eslint
 
-      - name: Run ESLint
+      - name: Run ESLint with auto-fix
+        run: npm run lint:fix
+
+      - name: Check remaining linting issues
         run: npm run lint

@@ -10,18 +10,30 @@
   },
   "globals": {
     "Game": "readonly",
-    "CCSE": "readonly",
+    "CCSE": "writable",
     "EnhancedOfflineLumps": "writable",
-    "Beautify": "readonly"
+    "Beautify": "readonly",
+    "l": "readonly"
   },
   "rules": {
     "no-var": "off",
     "no-unused-vars": [
       "error",
-      { "varsIgnorePattern": "EnhancedOfflineLumps" }
+      {
+        "varsIgnorePattern": "EnhancedOfflineLumps",
+        "argsIgnorePattern": "^_"
+      }
     ],
     "no-undef": "error",
+    "no-redeclare": ["error", { "builtinGlobals": false }],
     "semi": ["error", "always"],
-    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true,
+        "avoidEscape": true
+      }
+    ]
   }
 }
