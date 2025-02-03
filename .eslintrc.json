@@ -1,0 +1,27 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "script"
+  },
+  "globals": {
+    "Game": "readonly",
+    "CCSE": "readonly",
+    "EnhancedOfflineLumps": "writable",
+    "Beautify": "readonly"
+  },
+  "rules": {
+    "no-var": "off",
+    "no-unused-vars": [
+      "error",
+      { "varsIgnorePattern": "EnhancedOfflineLumps" }
+    ],
+    "no-undef": "error",
+    "semi": ["error", "always"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+  }
+}

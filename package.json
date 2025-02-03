@@ -1,0 +1,39 @@
+{
+  "name": "enhanced-offline-lumps",
+  "version": "1.0.0",
+  "description": "A Cookie Clicker mod that enhances sugar lump collection",
+  "main": "dist/EnhancedOfflineLumps.js",
+  "scripts": {
+    "build": "terser src/EnhancedOfflineLumps.js -o dist/EnhancedOfflineLumps.js --comments \"/^!|@preserve|@license|@cc_on/i\" --format \"comments=false\"",
+    "watch": "nodemon --watch src --ext js --exec \"npm run build\"",
+    "clean-logs": "replace-in-file --configFile=clean-logs.config.js",
+    "lint": "eslint src/ --ext .js",
+    "lint:fix": "eslint src/ --ext .js --fix",
+    "prepare": "npm run clean-logs && npm run build",
+    "dev": "npm run watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doeza/cookieclicker-mods.git"
+  },
+  "keywords": [
+    "cookie-clicker",
+    "mod",
+    "sugar-lumps",
+    "ccse",
+    "game-mod",
+    "cookie-clicker-mod"
+  ],
+  "author": "doeza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/doeza/cookieclicker-mods/issues"
+  },
+  "homepage": "https://github.com/doeza/cookieclicker-mods/tree/main/enhancedofflinelumps#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.3",
+    "replace-in-file": "^7.1.0",
+    "terser": "^5.27.0",
+    "eslint": "^8.56.0"
+  }
+}
