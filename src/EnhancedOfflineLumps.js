@@ -230,7 +230,7 @@ EnhancedOfflineLumps.UpdateSlider = function (prefName, value) {
 
 // Add mod settings to the options menu
 EnhancedOfflineLumps.addMenuHooks = function () {
-  
+
   // Remove any existing hooks first to prevent duplicates
   Game.customOptionsMenu = Game.customOptionsMenu.filter(func =>
     !func.toString().includes('Enhanced Offline Lumps Settings')
@@ -241,7 +241,7 @@ EnhancedOfflineLumps.addMenuHooks = function () {
 
   // Add options menu hook
   Game.customOptionsMenu.push(function () {
-        CCSE.AppendCollapsibleOptionsMenu(
+    CCSE.AppendCollapsibleOptionsMenu(
       'Enhanced Offline Lumps Settings',
       EnhancedOfflineLumps.createSettingsMenu()
     );
@@ -249,7 +249,7 @@ EnhancedOfflineLumps.addMenuHooks = function () {
 
   // Add stats menu hook
   Game.customStatsMenu.push(function () {
-    
+
     // Add version number and description
     CCSE.AppendStatsVersionNumber(EnhancedOfflineLumps.name, EnhancedOfflineLumps.version);
 
@@ -309,9 +309,9 @@ EnhancedOfflineLumps.addMenuHooks = function () {
     CCSE.AppendStatsGeneral('<div class="listing"><b>===Achievements===</b></div>');
     CCSE.AppendStatsGeneral(EnhancedOfflineLumps.addAchievementsToStats());
 
-      });
+  });
 
-  };
+};
 
 // Automation system: auto-collection logic
 EnhancedOfflineLumps.AutomationSystem = {
@@ -340,7 +340,7 @@ EnhancedOfflineLumps.AutomationSystem = {
     const possibleLumps = Math.floor(lumpTime / lumpMatureTime);
 
     if (possibleLumps > 0) {
-      
+
       // Collect the lumps
       for (let i = 0; i < possibleLumps; i++) {
         this.collectLump();
@@ -358,14 +358,14 @@ EnhancedOfflineLumps.AutomationSystem = {
     }
   },
   collectLump: function () {
-        const oldType = Game.lumpCurrentType;
+    const oldType = Game.lumpCurrentType;
     const oldLumps = Game.lumps;  // Store lumps before collection
 
     Game.clickLump();
 
     // Verify if collection was successful by checking if lumps increased
     if (Game.lumps > oldLumps) {
-            EnhancedOfflineLumps.config.statistics.totalLumpsCollected++;
+      EnhancedOfflineLumps.config.statistics.totalLumpsCollected++;
 
       // Track lump type
       switch (oldType) {
@@ -431,7 +431,7 @@ EnhancedOfflineLumps.load = function (str) {
     EnhancedOfflineLumps.config = Object.assign({}, EnhancedOfflineLumps.defaultConfig, save.config || {});
     EnhancedOfflineLumps.config.statistics = Object.assign({}, EnhancedOfflineLumps.defaultConfig.statistics, save.config.statistics || {});
   } catch (e) {
-        EnhancedOfflineLumps.config = Object.assign({}, EnhancedOfflineLumps.defaultConfig);
+    EnhancedOfflineLumps.config = Object.assign({}, EnhancedOfflineLumps.defaultConfig);
   }
 };
 
@@ -439,7 +439,7 @@ EnhancedOfflineLumps.load = function (str) {
 CCSE.customSave.push(function () {
   if (!CCSE.config.OtherMods) CCSE.config.OtherMods = {};
   CCSE.config.OtherMods.EnhancedOfflineLumps = EnhancedOfflineLumps.config;
-  });
+});
 
 CCSE.customLoad.push(function () {
   if (CCSE.config.OtherMods && CCSE.config.OtherMods.EnhancedOfflineLumps) {
@@ -450,7 +450,7 @@ CCSE.customLoad.push(function () {
     EnhancedOfflineLumps.config.statistics = Object.assign({},
       EnhancedOfflineLumps.defaultConfig.statistics,
       CCSE.config.OtherMods.EnhancedOfflineLumps.statistics || {});
-      }
+  }
 });
 
 // Cleanup function for mod unloading
@@ -468,7 +468,7 @@ EnhancedOfflineLumps.clean = function () {
 
 // Statistics tracking functions
 EnhancedOfflineLumps.updateStreak = function (isOptimal) {
-  
+
   if (isOptimal) {
     EnhancedOfflineLumps.currentStreak++;
     if (EnhancedOfflineLumps.currentStreak > EnhancedOfflineLumps.config.statistics.bestLumpStreak) {
@@ -482,7 +482,7 @@ EnhancedOfflineLumps.updateStreak = function (isOptimal) {
   EnhancedOfflineLumps.config.statistics.totalLumpsCollected++;
   EnhancedOfflineLumps.config.statistics.lastCollection = Date.now();
 
-    Game.UpdateMenu();
+  Game.UpdateMenu();
 };
 
 // Update achievements check function
@@ -670,7 +670,7 @@ EnhancedOfflineLumps.addAchievementsToStats = function () {
 
 // Mod initialization
 EnhancedOfflineLumps.init = function () {
-  
+
   // Initialize config if needed
   if (!EnhancedOfflineLumps.config) {
     EnhancedOfflineLumps.config = Object.assign({}, EnhancedOfflineLumps.defaultConfig);
@@ -678,15 +678,15 @@ EnhancedOfflineLumps.init = function () {
 
   // Add menu hooks first
   EnhancedOfflineLumps.addMenuHooks();
-  
+
   // Register game logic hook
   Game.registerHook('logic', function () {
     EnhancedOfflineLumps.AutomationSystem.check();
   });
-  
+
   // Check for offline progress
   EnhancedOfflineLumps.AutomationSystem.checkOfflineProgress();
-  
+
   EnhancedOfflineLumps.isLoaded = 1;
 
   // Force menu update and ensure stats are shown
@@ -698,12 +698,12 @@ EnhancedOfflineLumps.init = function () {
   }
 
   Game.Notify(EnhancedOfflineLumps.name + ' v' + EnhancedOfflineLumps.version, 'Mod loaded successfully!', [29, 16], 6);
-  };
+};
 
 EnhancedOfflineLumps.launch = function () {
   // Prevent multiple launches
   if (EnhancedOfflineLumps.isLoaded) {
-        return;
+    return;
   }
 
   // Register the mod

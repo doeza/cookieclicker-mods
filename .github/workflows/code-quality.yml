@@ -9,9 +9,6 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./enhancedofflinelumps
 
     steps:
       - uses: actions/checkout@v4
@@ -23,7 +20,6 @@ jobs:
 
       - name: Get npm cache directory
         id: npm-cache-dir
-        shell: bash
         run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
 
       - name: Cache dependencies
@@ -34,10 +30,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Create directories
+        run: |
+          cd cookieclicker-mods/enhancedofflinelumps
+          mkdir -p src dist
+
       - name: Install dependencies
         run: |
+          cd cookieclicker-mods/enhancedofflinelumps
           npm ci || (npm install && npm shrinkwrap)
           npm install -g eslint
 
       - name: Run ESLint
-        run: npm run lint
+        run: |
+          cd cookieclicker-mods/enhancedofflinelumps
+          npm run lint
