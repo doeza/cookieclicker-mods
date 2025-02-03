@@ -20,23 +20,30 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
+          cache-dependency-path: "enhancedofflinelumps/package-lock.json"
+
+      - name: Change to mod directory
+        run: cd enhancedofflinelumps
 
       # Clean install dependencies
       - name: Install dependencies
+        working-directory: ./enhancedofflinelumps
         run: |
           npm ci || (npm install && npm shrinkwrap)
 
       - name: Clean logs
+        working-directory: ./enhancedofflinelumps
         run: npm run clean-logs
 
       - name: Build
+        working-directory: ./enhancedofflinelumps
         run: npm run build
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist/
+          path: enhancedofflinelumps/dist/
           retention-days: 5
 
   release:
@@ -53,15 +60,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist/
+          path: enhancedofflinelumps/dist/
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/EnhancedOfflineLumps.js
-            README.md
-            LICENSE
+            enhancedofflinelumps/dist/EnhancedOfflineLumps.js
+            enhancedofflinelumps/README.md
+            enhancedofflinelumps/LICENSE
           draft: false
           prerelease: false
           generate_release_notes: true

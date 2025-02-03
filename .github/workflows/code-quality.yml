@@ -18,12 +18,15 @@ jobs:
         with:
           node-version: "18"
           cache: "npm"
+          cache-dependency-path: "enhancedofflinelumps/package-lock.json"
 
       # Clean install dependencies
       - name: Install dependencies
+        working-directory: ./enhancedofflinelumps
         run: |
           npm ci || (npm install && npm shrinkwrap)
           npm install -g eslint
 
       - name: Run ESLint
+        working-directory: ./enhancedofflinelumps
         run: npm run lint
